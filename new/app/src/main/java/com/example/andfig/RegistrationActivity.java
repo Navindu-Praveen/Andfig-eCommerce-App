@@ -30,12 +30,19 @@ public class RegistrationActivity<userPassword> extends AppCompatActivity {
         getSupportActionBar().hide();
 
         auth=FirebaseAuth.getInstance();
+
+
+        //current user !=null *******************
+        if(auth.getCurrentUser() != null){
+            startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+            finish();
+        }
+        //**************************************
         name=findViewById(R.id.name);
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
-
     }
-
+    //signup
     public void signup(View view) {
         String userName = name.getText().toString();
         String userEmail = email.getText().toString();
@@ -70,7 +77,7 @@ public class RegistrationActivity<userPassword> extends AppCompatActivity {
         //startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
     }
 
-
+    //signin
     public void signin(View view) {
         startActivity(new Intent(RegistrationActivity.this,LoginActivity.class));
     }
